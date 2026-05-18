@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entradas · Laboratorio</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1e1e1c;
+    --surface: #2a2a27;
+    --surface2: #323230;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --moss: #5a7a4a;
+    --moss-dim: #3d5432;
+    --stone: #c8c4b8;
+    --stone-dim: #888880;
+    --white: #f0ede6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: #161614;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar-brand {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    letter-spacing: 0.2px;
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 0;
+  }
+
+  .navbar-link {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--stone-dim);
+    text-decoration: none;
+    padding: 0 16px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    letter-spacing: 0.3px;
+  }
+
+  .navbar-link:hover { color: var(--white); }
+  .navbar-link.active { color: var(--white); border-bottom-color: var(--moss); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 48px 40px 36px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .page-header h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .page-header .subtitle {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+  }
+
+  .entry-count {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--stone-dim);
+    opacity: 0.5;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* ── ENTRADA ── */
+  .entrada {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    animation: fadeUp .4s ease both;
+  }
+
+  .entrada:last-child {
+    border-bottom: none;
+  }
+
+  .entrada-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .entrada-fecha {
+    font-size: 11px;
+    color: var(--stone-dim);
+    opacity: 0.55;
+    letter-spacing: 0.5px;
+  }
+
+  .entrada-autor {
+    font-size: 11px;
+    color: var(--moss);
+    letter-spacing: 0.3px;
+  }
+
+  .entrada-invitado {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--moss-dim);
+    color: var(--stone);
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+  }
+
+  .entrada-titulo {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+
+  .entrada-titulo:hover { opacity: 0.75; }
+
+  .entrada-resumen {
+    font-size: 13px;
+    color: var(--stone-dim);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .leer-mas {
+    font-size: 11.5px;
+    color: var(--moss);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity .15s;
+    letter-spacing: 0.3px;
+  }
+
+  .leer-mas:hover { opacity: 0.7; }
+
+  .leer-mas svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .empty p {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    opacity: 0.25;
+    margin-bottom: 8px;
+  }
+
+  .empty span {
+    font-size: 12px;
+    color: var(--stone-dim);
+    opacity: 0.35;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-size: 10.5px;
+    color: var(--stone-dim);
+    opacity: 0.35;
+    letter-spacing: 0.5px;
+    border-top: 1px solid var(--border);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .navbar { padding: 0 20px; }
+    .navbar-link { padding: 0 10px; font-size: 11px; }
+    .page-header { padding: 32px 20px 24px; }
+    .layout { padding: 32px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">Laboratorio</a>
+  <div class="navbar-links">
+    <a href="index.html" class="navbar-link">Laboratorio</a>
+    <a href="entradas.html" class="navbar-link active">Entradas</a>
+    <a href="sobre.html" class="navbar-link">Sobre este proyecto</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h1>Entradas</h1>
+    <p class="subtitle">Didáctica del derecho</p>
+  </div>
+  <span class="entry-count" id="entry-count"></span>
+</div>
+
+<div class="layout">
+  <div id="entradas-list"></div>
+</div>
+
+<footer>
+  Laboratorio de casos y simulaciones · Didáctica del derecho
+</footer>
+
+<script>
+/*
+  ==============================================
+  ENTRADAS — EDITÁ ESTE ARRAY PARA AGREGAR ENTRADAS
+  ==============================================
+  Cada entrada tiene esta estructura:
+  {
+    id: número único,
+    titulo: "Título de la entrada",
+    autor: "Nombre del autor",
+    invitado: true | false,        ← true si es un autor invitado
+    fecha: "2026-05-18",           ← formato AAAA-MM-DD
+    resumen: "Texto de presentación (2-3 oraciones)",
+    url: "https://link-al-texto.com"  ← Google Doc, PDF, o página
+  }
+*/
+const ENTRADAS = [
+  /* Ejemplo (descomentá para probar):
+  {
+    id: 1,
+    titulo: "Por qué el caso clínico supera al examen tradicional",
+    autor: "El editor",
+    invitado: false,
+    fecha: "2026-05-18",
+    resumen: "Una reflexión sobre los límites del examen escrito como herramienta de evaluación y las ventajas del trabajo con casos reales en la formación jurídica.",
+    url: ""
+  },
+  */
+];
+
+function formatFecha(str) {
+  const [y, m, d] = str.split("-");
+  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return `${parseInt(d)} de ${meses[parseInt(m)-1]} de ${y}`;
+}
+
+function render() {
+  const list = document.getElementById("entradas-list");
+  const count = document.getElementById("entry-count");
+
+  count.textContent = ENTRADAS.length
+    ? ENTRADAS.length + (ENTRADAS.length === 1 ? " entrada" : " entradas")
+    : "";
+
+  if (ENTRADAS.length === 0) {
+    list.innerHTML = `<div class="empty"><p>Sin entradas todavía</p><span>Las entradas aparecerán aquí cuando las agregues al archivo.</span></div>`;
+    return;
+  }
+
+  // Ordenar por fecha descendente
+  const ordenadas = [...ENTRADAS].sort((a, b) => b.fecha.localeCompare(a.fecha));
+
+  list.innerHTML = ordenadas.map((e, i) => `
+    <div class="entrada" style="animation-delay:${i * 0.06}s">
+      <div class="entrada-meta">
+        <span class="entrada-fecha">${formatFecha(e.fecha)}</span>
+        <span class="entrada-autor">${e.autor}</span>
+        ${e.invitado ? '<span class="entrada-invitado">Invitado/a</span>' : ""}
+      </div>
+      <div class="entrada-titulo" onclick="${e.url ? `window.open('${e.url}','_blank')` : ''}">${e.titulo}</div>
+      <p class="entrada-resumen">${e.resumen}</p>
+      ${e.url ? `<a href="${e.url}" target="_blank" class="leer-mas">Leer entrada <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>` : ""}
+    </div>
+  `).join("");
+}
+
+render();
+</script>
+</body>
+</html>

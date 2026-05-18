@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorio de casos y simulaciones</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1e1e1c;
+    --surface: #2a2a27;
+    --surface2: #323230;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --moss: #5a7a4a;
+    --moss-dim: #3d5432;
+    --stone: #c8c4b8;
+    --stone-dim: #888880;
+    --white: #f0ede6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    padding: 36px 40px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+    font-weight: 400;
+  }
+
+  .counters {
+    display: flex;
+    gap: 28px;
+    flex-shrink: 0;
+  }
+
+  .counter-n {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+  }
+
+  .counter-l {
+    font-size: 10px;
+    color: var(--stone-dim);
+    letter-spacing: 1px;
+  }
+
+  /* ── BARRA DE BÚSQUEDA ── */
+  .search-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    stroke: var(--stone-dim);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    padding: 9px 12px 9px 34px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--white);
+    outline: none;
+    transition: border-color .15s;
+  }
+
+  .search-wrap input::placeholder { color: var(--stone-dim); }
+  .search-wrap input:focus { border-color: var(--moss); }
+
+  .filter-pill {
+    padding: 7px 14px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--stone-dim);
+    transition: all .15s;
+  }
+
+  .filter-pill.active,
+  .filter-pill:hover {
+    background: var(--moss-dim);
+    border-color: var(--moss);
+    color: var(--white);
+  }
+
+  /* ── LAYOUT PRINCIPAL ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+  }
+
+  .sidebar-section {
+    padding: 0 18px 18px;
+  }
+
+  .sidebar-section + .sidebar-section {
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+
+  .sidebar-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0.55;
+  }
+
+  .sidebar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 12px;
+    color: var(--stone-dim);
+    cursor: pointer;
+    transition: color .1s;
+    user-select: none;
+  }
+
+  .sidebar-item:hover,
+  .sidebar-item.active { color: var(--white); }
+  .sidebar-item.active { font-weight: 500; }
+
+  .sidebar-count {
+    font-size: 11px;
+    font-family: 'EB Garamond', serif;
+    opacity: 0.5;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 24px 28px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+    opacity: 0.45;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── GRID DE CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    display: flex;
+    flex-direction: column;
+    animation: fadeUp .4s ease both;
+  }
+
+  .card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+
+  .card-stripe { height: 2px; }
+
+  .card-body {
+    padding: 14px 15px 10px;
+    flex: 1;
+  }
+
+  .card-area {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.35;
+    margin-bottom: 7px;
+  }
+
+  .card-desc {
+    font-size: 11.5px;
+    color: var(--stone-dim);
+    line-height: 1.55;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding: 8px 15px;
+    margin-top: 12px;
+  }
+
+  .card-formats {
+    display: flex;
+    gap: 10px;
+  }
+
+  .fmt-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--stone-dim);
+    opacity: 0.65;
+  }
+
+  .fmt-badge svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .dif-bars {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+
+  .dif-bar {
+    width: 16px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--surface2);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--stone-dim);
+  }
+
+  .empty-state p {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--white);
+    opacity: 0.4;
+  }
+
+  .empty-state span {
+    font-size: 12px;
+    opacity: 0.4;
+  }
+
+  /* ── COLORES POR ÁREA ── */
+  /* Se generan dinámicamente desde JS usando variables CSS */
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-size: 10.5px;
+    color: var(--stone-dim);
+    opacity: 0.4;
+    letter-spacing: 0.5px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* ── ANIMACIONES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .site-header { padding: 24px 20px 20px; }
+    .main { padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-top { flex-direction: column; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: #161614;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar-brand {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    letter-spacing: 0.2px;
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 0;
+  }
+
+  .navbar-link {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--stone-dim);
+    text-decoration: none;
+    padding: 0 16px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    letter-spacing: 0.3px;
+  }
+
+  .navbar-link:hover { color: var(--white); }
+  .navbar-link.active { color: var(--white); border-bottom-color: var(--moss); }
+
+  @media (max-width: 600px) {
+    .navbar { padding: 0 20px; }
+    .navbar-brand { font-size: 14px; }
+    .navbar-link { padding: 0 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">Laboratorio</a>
+  <div class="navbar-links">
+    <a href="index.html" class="navbar-link active">Laboratorio</a>
+    <a href="entradas.html" class="navbar-link">Entradas</a>
+    <a href="sobre.html" class="navbar-link">Sobre este proyecto</a>
+  </div>
+</nav>
+
+<header class="site-header">
+  <div class="header-top">
+    <div>
+      <h1>Laboratorio de casos y simulaciones</h1>
+      <p class="subtitle">Didáctica del derecho</p>
+    </div>
+    <div class="counters">
+      <div>
+        <span class="counter-n" id="total-casos">0</span>
+        <span class="counter-l">casos</span>
+      </div>
+      <div>
+        <span class="counter-n" id="total-sims">0</span>
+        <span class="counter-l">simulaciones</span>
+      </div>
+    </div>
+  </div>
+  <div class="search-row">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search-input" placeholder="Buscar por tema, materia, palabras clave…" />
+    </div>
+
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Oficio jur&iacute;dico</div>
+      <div class="sidebar-item active" data-oficio="todos">Todos</div>
+      <div class="sidebar-item" data-oficio="Litigante">Litigante</div>
+      <div class="sidebar-item" data-oficio="Juez">Juez</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">&Aacute;rea</div>
+      <div id="area-list"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Dificultad</div>
+      <div class="sidebar-item active" data-dif="todos">Todas</div>
+      <div class="sidebar-item" data-dif="1">Introductorio</div>
+      <div class="sidebar-item" data-dif="2">Intermedio</div>
+      <div class="sidebar-item" data-dif="3">Avanzado</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Contiene IA</div>
+      <div class="sidebar-item active" data-ia="todos">Todos</div>
+      <div class="sidebar-item" data-ia="si">S&iacute;</div>
+      <div class="sidebar-item" data-ia="no">No</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="section-label" id="section-label">Todos los casos</div>
+    <div class="cards-grid" id="cards-grid"></div>
+  </main>
+</div>
+
+<footer>
+  Laboratorio de casos y simulaciones · Didáctica del derecho
+</footer>
+
+<script>
+/*
+  ==============================================
+  CASOS.JSON — EDITÁ ESTE ARRAY PARA AGREGAR CASOS
+  ==============================================
+  Cada caso tiene esta estructura:
+  {
+    id: número único,
+    titulo: "Nombre del caso",
+    area: "Penal" | "Civil" | "Familia" | "Constitucional" | "Laboral" | "Procesal" | etc.,
+    descripcion: "Breve descripción del caso",
+    formatos: ["PDF", "Video", "Simulación"],   ← podés poner uno o varios
+    dificultad: 1 | 2 | 3,                      ← 1=introductorio, 2=intermedio, 3=avanzado
+    oficio: "Litigante" | "Juez" | "Ambos",     ← oficio juridico al que va dirigido
+    ia: true | false,                            ← true si contiene componente de IA
+    tipo: "caso" | "simulacion",
+    url: "https://link-al-material.com"          ← opcional
+  }
+*/
+const CASOS = [
+  /* Ejemplo (descomentá para probar):
+  {
+    id: 1,
+    titulo: "Detención sin orden en flagrancia",
+    area: "Penal",
+    descripcion: "Prueba testimonial y requisa en vía pública. Garantías procesales.",
+    formatos: ["PDF", "Video"],
+    dificultad: 2,
+    oficio: "Litigante",
+    ia: false,
+    tipo: "caso",
+    url: ""
+  },
+  */
+];
+
+/* ── COLORES POR ÁREA ── */
+const AREA_COLORS = {
+  "Penal":          { stripe: "#c8c4b8", text: "#c8c4b8" },
+  "Civil":          { stripe: "#5a7a4a", text: "#5a7a4a" },
+  "Familia":        { stripe: "#7a6840", text: "#a08858" },
+  "Constitucional": { stripe: "#888880", text: "#888880" },
+  "Laboral":        { stripe: "#6a7a8a", text: "#8aaabb" },
+  "Procesal":       { stripe: "#7a5a6a", text: "#aa8898" },
+};
+
+function getAreaColor(area) {
+  return AREA_COLORS[area] || { stripe: "#666660", text: "#888880" };
+}
+
+/* ── ICONOS SVG ── */
+const ICONS = {
+  PDF: `<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+  Video: `<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+  Simulación: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+};
+
+/* ── ESTADO ── */
+let activeArea   = "todas";
+let activeDif    = "todos";
+let activeOficio = "todos";
+let activeIA     = "todos";
+let searchQ      = "";
+
+/* ── RENDER SIDEBAR ÁREAS ── */
+function renderAreas() {
+  const areas = ["todas", ...new Set(CASOS.map(c => c.area))];
+  const list  = document.getElementById("area-list");
+  list.innerHTML = "";
+  areas.forEach(area => {
+    const count = area === "todas" ? CASOS.length : CASOS.filter(c => c.area === area).length;
+    const div   = document.createElement("div");
+    div.className = "sidebar-item" + (activeArea === area ? " active" : "");
+    div.dataset.area = area;
+    div.innerHTML = `${area === "todas" ? "Todas" : area} <span class="sidebar-count">${count}</span>`;
+    div.addEventListener("click", () => { activeArea = area; render(); });
+    list.appendChild(div);
+  });
+}
+
+/* ── FILTRAR ── */
+function filterCasos() {
+  return CASOS.filter(c => {
+    const matchArea   = activeArea   === "todas" || c.area === activeArea;
+    const matchDif    = activeDif    === "todos" || String(c.dificultad) === activeDif;
+    const matchOficio = activeOficio === "todos" || c.oficio === activeOficio || c.oficio === "Ambos";
+    const matchIA     = activeIA     === "todos" || (activeIA === "si" ? c.ia === true : c.ia === false);
+    const matchQ      = !searchQ     || c.titulo.toLowerCase().includes(searchQ) || c.descripcion.toLowerCase().includes(searchQ) || c.area.toLowerCase().includes(searchQ);
+    return matchArea && matchDif && matchOficio && matchIA && matchQ;
+  });
+}
+
+/* ── RENDER CARDS ── */
+function renderCards(casos) {
+  const grid = document.getElementById("cards-grid");
+  grid.innerHTML = "";
+
+  if (casos.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><p>Sin resultados</p><span>Probá con otros filtros o términos de búsqueda.</span></div>`;
+    return;
+  }
+
+  casos.forEach((c, i) => {
+    const color = getAreaColor(c.area);
+    const card  = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = (i * 0.04) + "s";
+    if (c.url) card.style.cursor = "pointer";
+
+    const difBars = [1,2,3].map(n =>
+      `<div class="dif-bar" style="background:${n <= c.dificultad ? (c.area === 'Civil' ? 'var(--moss)' : 'var(--stone-dim)') : 'var(--surface2)'}"></div>`
+    ).join("");
+
+    const formats = c.formatos.map(f =>
+      `<span class="fmt-badge">${ICONS[f] || ""} ${f}</span>`
+    ).join("");
+
+    card.innerHTML = `
+      <div class="card-stripe" style="background:${color.stripe}"></div>
+      <div class="card-body">
+        <span class="card-area" style="color:${color.text}">${c.area}</span>
+        <div class="card-title">${c.titulo}</div>
+        <div class="card-desc">${c.descripcion}</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-formats">${formats}</div>
+        <div class="dif-bars">${difBars}</div>
+      </div>
+    `;
+
+    if (c.url) card.addEventListener("click", () => window.open(c.url, "_blank"));
+    grid.appendChild(card);
+  });
+}
+
+/* ── CONTADORES ── */
+function updateCounters() {
+  document.getElementById("total-casos").textContent = CASOS.filter(c => c.tipo === "caso").length;
+  document.getElementById("total-sims").textContent  = CASOS.filter(c => c.tipo === "simulacion").length;
+}
+
+/* ── RENDER COMPLETO ── */
+function render() {
+  const filtered = filterCasos();
+  renderAreas();
+  renderCards(filtered);
+  updateCounters();
+
+  // etiqueta de sección
+  const label = document.getElementById("section-label");
+  const parts = [];
+  if (activeArea   !== "todas") parts.push(activeArea);
+  if (activeDif    !== "todos") parts.push(["","Introductorio","Intermedio","Avanzado"][activeDif] || "");
+  if (activeOficio !== "todos") parts.push(activeOficio);
+  if (activeIA     !== "todos") parts.push("IA: " + (activeIA === "si" ? "S\u00ed" : "No"));
+  label.textContent = parts.length ? parts.join(" \u00b7 ") : "Todos los casos";
+
+  document.querySelectorAll("[data-dif]").forEach(el => {
+    el.classList.toggle("active", el.dataset.dif === activeDif);
+  });
+  document.querySelectorAll("[data-oficio]").forEach(el => {
+    el.classList.toggle("active", el.dataset.oficio === activeOficio);
+  });
+  document.querySelectorAll("[data-ia]").forEach(el => {
+    el.classList.toggle("active", el.dataset.ia === activeIA);
+  });
+}
+
+/* ── EVENTOS ── */
+document.getElementById("search-input").addEventListener("input", e => {
+  searchQ = e.target.value.trim().toLowerCase();
+  render();
+});
+
+document.querySelectorAll("[data-dif]").forEach(el => {
+  el.addEventListener("click", () => { activeDif = el.dataset.dif; render(); });
+});
+
+document.querySelectorAll("[data-oficio]").forEach(el => {
+  el.addEventListener("click", () => { activeOficio = el.dataset.oficio; render(); });
+});
+
+document.querySelectorAll("[data-ia]").forEach(el => {
+  el.addEventListener("click", () => { activeIA = el.dataset.ia; render(); });
+});
+
+/* ── INIT ── */
+render();
+</script>
+</body>
+</html>

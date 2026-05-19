@@ -527,11 +527,11 @@
   }
 */
 const CASOS = [
-{
+  {
     id: 1,
-    titulo: "Audiencias de control de la detención",
-    area: "Procesal Penal",
-    descripcion: "Análisis de una audiencia de control de detención en el marco del sistema acusatorio. Se trabajan los argumentos de la defensa y la fiscalía, los estándares para evaluar la legalidad de la detención y las destrezas de litigio oral propias de esta instancia.",
+    titulo: "Audiencia de control de la detencion",
+    area: "Penal",
+    descripcion: "Analisis de una audiencia de control de detencion en el marco del sistema acusatorio. Se trabajan los argumentos de la defensa y la fiscalia, los estandares para evaluar la legalidad de la detencion y las destrezas de litigio oral propias de esta instancia.",
     formatos: ["PDF"],
     dificultad: 1,
     oficio: "Litigante",
@@ -539,30 +539,66 @@ const CASOS = [
     tipo: "caso",
     url: ""
   },
-];
-    id: 1,
-    titulo: "Audiencias de exclusion de prueba",
-    area: "Procesal Penal",
-    descripcion: "Análisis de una audiencia de exclusión de prueba ilícita en el proceso penal acusatorio. Se trabajan los fundamentos constitucionales de la regla de exclusión, los argumentos para su aplicación y las estrategias de litigio para impugnar o defender la admisibilidad de la prueba.",
+  {
+    id: 2,
+    titulo: "Audiencia de exclusion de prueba ilicita",
+    area: "Penal",
+    descripcion: "Analisis de una audiencia de exclusion de prueba ilicita en el proceso penal acusatorio. Se trabajan los fundamentos constitucionales de la regla de exclusion y las estrategias de litigio para impugnar o defender la admisibilidad de la evidencia.",
     formatos: ["PDF"],
-    dificultad: 1,
+    dificultad: 2,
     oficio: "Litigante",
     ia: false,
     tipo: "caso",
     url: ""
   },
-];
-    id: 1,
-    titulo: "Audiencias de control de la acusación",
-    area: "Procesal Penal",
-    descripcion: "Análisis de una audiencia de control de la acusación en el proceso penal acusatorio. Se trabajan los requisitos formales y sustanciales del escrito de acusación, los planteos de la defensa para objetarla y las destrezas de litigio propias de esta instancia de control judicial.",
+  {
+    id: 3,
+    titulo: "Audiencia de control de la acusacion",
+    area: "Penal",
+    descripcion: "Analisis de una audiencia de control de la acusacion en el proceso penal acusatorio. Se trabajan los requisitos del escrito de acusacion, los planteos de la defensa para objetarla y las destrezas de litigio propias de esta instancia.",
     formatos: ["PDF"],
-    dificultad: 1,
+    dificultad: 2,
     oficio: "Litigante",
     ia: false,
     tipo: "caso",
     url: ""
   },
+  {
+    id: 4,
+    titulo: "Simulacion: audiencia de control de la detencion",
+    area: "Penal",
+    descripcion: "Ejercicio de simulacion de audiencia de control de detencion. Los participantes asumen los roles de defensor, fiscal y juez, y trabajan los argumentos propios de esta instancia del proceso acusatorio.",
+    formatos: ["Simulacion"],
+    dificultad: 1,
+    oficio: "Ambos",
+    ia: false,
+    tipo: "simulacion",
+    url: ""
+  },
+  {
+    id: 5,
+    titulo: "Simulacion: audiencia de exclusion de prueba",
+    area: "Penal",
+    descripcion: "Ejercicio de simulacion de audiencia de exclusion de prueba ilicita. Se trabaja la construccion del argumento de exclusion, la respuesta de la acusacion y la decision judicial sobre la admisibilidad de la evidencia.",
+    formatos: ["Simulacion"],
+    dificultad: 2,
+    oficio: "Ambos",
+    ia: false,
+    tipo: "simulacion",
+    url: ""
+  },
+  {
+    id: 6,
+    titulo: "Simulacion: alegato de clausura",
+    area: "Penal",
+    descripcion: "Ejercicio de simulacion de alegato de clausura en juicio oral. Los participantes construyen y exponen el argumento final del caso, integrando la prueba producida en el debate y las teorias del caso de cada parte.",
+    formatos: ["Simulacion"],
+    dificultad: 3,
+    oficio: "Litigante",
+    ia: false,
+    tipo: "simulacion",
+    url: ""
+  }
 ];
 
 /* ── COLORES POR ÁREA ── */

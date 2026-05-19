@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laboratorio de casos y simulaciones</title>
+<title>Laboratorio de Oficios Jurídicos</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #1e1e1c;
-    --surface: #2a2a27;
-    --surface2: #323230;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --moss: #5a7a4a;
-    --moss-dim: #3d5432;
-    --stone: #c8c4b8;
-    --stone-dim: #888880;
+    --surface: #2a2f3a;
+    --surface2: #323a47;
+    --border: rgba(80,120,180,0.25);
+    --border2: rgba(80,120,180,0.40);
+    --moss: #7a9fd4;
+    --moss-dim: #1e2d4a;
+    --stone: #c8d4e8;
+    --stone-dim: #7a9fd4;
     --white: #f0ede6;
   }
 
@@ -447,8 +447,8 @@
 <header class="site-header">
   <div class="header-top">
     <div>
-      <h1>Laboratorio de casos y simulaciones</h1>
-      <p class="subtitle">Didáctica del derecho</p>
+      <h1>Laboratorio de Oficios Jurídicos</h1>
+      <p class="subtitle">Casos, simulaciones y didáctica del derecho</p>
     </div>
     <div class="counters">
       <div>
@@ -529,9 +529,9 @@
 const CASOS = [
   {
     id: 1,
-    titulo: "Audiencia de control de la detencion",
+    titulo: "Audiencia de control de la detención",
     area: "Penal",
-    descripcion: "Analisis de una audiencia de control de detencion en el marco del sistema acusatorio. Se trabajan los argumentos de la defensa y la fiscalia, los estandares para evaluar la legalidad de la detencion y las destrezas de litigio oral propias de esta instancia.",
+    descripcion: "Análisis de una audiencia de control de detención en el marco del sistema acusatorio. Se trabajan los argumentos de la defensa y la fiscalía, los estándares para evaluar la legalidad de la detención y las destrezas de litigio oral propias de esta instancia.",
     formatos: ["PDF"],
     dificultad: 1,
     oficio: "Litigante",
@@ -541,9 +541,9 @@ const CASOS = [
   },
   {
     id: 2,
-    titulo: "Audiencia de exclusion de prueba ilicita",
+    titulo: "Audiencia de exclusión de prueba ilícita",
     area: "Penal",
-    descripcion: "Analisis de una audiencia de exclusion de prueba ilicita en el proceso penal acusatorio. Se trabajan los fundamentos constitucionales de la regla de exclusion y las estrategias de litigio para impugnar o defender la admisibilidad de la evidencia.",
+    descripcion: "Análisis de una audiencia de exclusión de prueba ilícita en el proceso penal acusatorio. Se trabajan los fundamentos constitucionales de la regla de exclusión y las estrategias de litigio para impugnar o defender la admisibilidad de la evidencia.",
     formatos: ["PDF"],
     dificultad: 2,
     oficio: "Litigante",
@@ -553,9 +553,9 @@ const CASOS = [
   },
   {
     id: 3,
-    titulo: "Audiencia de control de la acusacion",
+    titulo: "Audiencia de control de la acusación",
     area: "Penal",
-    descripcion: "Analisis de una audiencia de control de la acusacion en el proceso penal acusatorio. Se trabajan los requisitos del escrito de acusacion, los planteos de la defensa para objetarla y las destrezas de litigio propias de esta instancia.",
+    descripcion: "Análisis de una audiencia de control de la acusación en el proceso penal acusatorio. Se trabajan los requisitos del escrito de acusación, los planteos de la defensa para objetarla y las destrezas de litigio propias de esta instancia.",
     formatos: ["PDF"],
     dificultad: 2,
     oficio: "Litigante",
@@ -565,10 +565,10 @@ const CASOS = [
   },
   {
     id: 4,
-    titulo: "Simulacion: audiencia de control de la detencion",
+    titulo: "Simulación: audiencia de control de la detención",
     area: "Penal",
-    descripcion: "Ejercicio de simulacion de audiencia de control de detencion. Los participantes asumen los roles de defensor, fiscal y juez, y trabajan los argumentos propios de esta instancia del proceso acusatorio.",
-    formatos: ["Simulacion"],
+    descripcion: "Ejercicio de simulación de audiencia de control de detención. Los participantes asumen los roles de defensor, fiscal y juez, y trabajan los argumentos propios de esta instancia del proceso acusatorio.",
+    formatos: ["Simulación"],
     dificultad: 1,
     oficio: "Ambos",
     ia: false,
@@ -577,10 +577,10 @@ const CASOS = [
   },
   {
     id: 5,
-    titulo: "Simulacion: audiencia de exclusion de prueba",
+    titulo: "Simulación: audiencia de exclusión de prueba",
     area: "Penal",
-    descripcion: "Ejercicio de simulacion de audiencia de exclusion de prueba ilicita. Se trabaja la construccion del argumento de exclusion, la respuesta de la acusacion y la decision judicial sobre la admisibilidad de la evidencia.",
-    formatos: ["Simulacion"],
+    descripcion: "Ejercicio de simulación de audiencia de exclusión de prueba ilícita. Se trabaja la construcción del argumento de exclusión, la respuesta de la acusación y la decisión judicial sobre la admisibilidad de la evidencia.",
+    formatos: ["Simulación"],
     dificultad: 2,
     oficio: "Ambos",
     ia: false,
@@ -589,10 +589,10 @@ const CASOS = [
   },
   {
     id: 6,
-    titulo: "Simulacion: alegato de clausura",
+    titulo: "Simulación: alegato de clausura",
     area: "Penal",
-    descripcion: "Ejercicio de simulacion de alegato de clausura en juicio oral. Los participantes construyen y exponen el argumento final del caso, integrando la prueba producida en el debate y las teorias del caso de cada parte.",
-    formatos: ["Simulacion"],
+    descripcion: "Ejercicio de simulación de alegato de clausura en juicio oral. Los participantes construyen y exponen el argumento final del caso, integrando la prueba producida en el debate y las teorías del caso de cada parte.",
+    formatos: ["Simulación"],
     dificultad: 3,
     oficio: "Litigante",
     ia: false,

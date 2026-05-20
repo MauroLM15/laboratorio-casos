@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laboratorio de Oficios Jurídicos</title>
+<title>Casos & Simulaciones · Laboratorio de Didáctica del Derecho</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -388,20 +388,41 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    height: 52px;
+    height: 64px;
     position: sticky;
     top: 0;
     z-index: 100;
   }
 
   .navbar-brand {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
     text-decoration: none;
-    opacity: 0.85;
-    letter-spacing: 0.2px;
+  }
+
+  .navbar-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .navbar-brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f0ede6;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+
+  .navbar-brand-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: #7a9fd4;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
 
   .navbar-links {
@@ -415,7 +436,7 @@
     color: var(--stone-dim);
     text-decoration: none;
     padding: 0 16px;
-    height: 52px;
+    height: 64px;
     display: flex;
     align-items: center;
     border-bottom: 2px solid transparent;
@@ -436,11 +457,18 @@
 <body>
 
 <nav class="navbar">
-  <a href="index.html" class="navbar-brand">Laboratorio</a>
+  <a href="index.html" class="navbar-brand">
+    
+    <div class="navbar-brand-text">
+      <span class="navbar-brand-name">Casos &amp; Simulaciones</span>
+      <span class="navbar-brand-sub">Laboratorio de Didáctica del Derecho</span>
+    </div>
+  </a>
   <div class="navbar-links">
     <a href="index.html" class="navbar-link active">Laboratorio</a>
-    <a href="entradas.html" class="navbar-link">Entradas</a>
-    <a href="sobre.html" class="navbar-link">Sobre este proyecto</a>
+    <a href="entradas.html" class="navbar-link ">Entradas</a>
+    <a href="sobre.html" class="navbar-link ">Sobre este proyecto</a>
+    
   </div>
 </nav>
 
@@ -504,7 +532,7 @@
 </div>
 
 <footer>
-  Laboratorio de casos y simulaciones · Didáctica del derecho
+  Casos &amp; Simulaciones · Laboratorio de Didáctica del Derecho
 </footer>
 
 <script>
@@ -526,80 +554,7 @@
     url: "https://link-al-material.com"          ← opcional
   }
 */
-const CASOS = [
-  {
-    id: 1,
-    titulo: "Audiencia de control de la detención",
-    area: "Penal",
-    descripcion: "Análisis de una audiencia de control de detención en el marco del sistema acusatorio. Se trabajan los argumentos de la defensa y la fiscalía, los estándares para evaluar la legalidad de la detención y las destrezas de litigio oral propias de esta instancia.",
-    formatos: ["PDF"],
-    dificultad: 1,
-    oficio: "Litigante",
-    ia: false,
-    tipo: "caso",
-    url: ""
-  },
-  {
-    id: 2,
-    titulo: "Audiencia de exclusión de prueba ilícita",
-    area: "Penal",
-    descripcion: "Análisis de una audiencia de exclusión de prueba ilícita en el proceso penal acusatorio. Se trabajan los fundamentos constitucionales de la regla de exclusión y las estrategias de litigio para impugnar o defender la admisibilidad de la evidencia.",
-    formatos: ["PDF"],
-    dificultad: 2,
-    oficio: "Litigante",
-    ia: false,
-    tipo: "caso",
-    url: ""
-  },
-  {
-    id: 3,
-    titulo: "Audiencia de control de la acusación",
-    area: "Penal",
-    descripcion: "Análisis de una audiencia de control de la acusación en el proceso penal acusatorio. Se trabajan los requisitos del escrito de acusación, los planteos de la defensa para objetarla y las destrezas de litigio propias de esta instancia.",
-    formatos: ["PDF"],
-    dificultad: 2,
-    oficio: "Litigante",
-    ia: false,
-    tipo: "caso",
-    url: ""
-  },
-  {
-    id: 4,
-    titulo: "Simulación: audiencia de control de la detención",
-    area: "Penal",
-    descripcion: "Ejercicio de simulación de audiencia de control de detención. Los participantes asumen los roles de defensor, fiscal y juez, y trabajan los argumentos propios de esta instancia del proceso acusatorio.",
-    formatos: ["Simulación"],
-    dificultad: 1,
-    oficio: "Ambos",
-    ia: false,
-    tipo: "simulacion",
-    url: ""
-  },
-  {
-    id: 5,
-    titulo: "Simulación: audiencia de exclusión de prueba",
-    area: "Penal",
-    descripcion: "Ejercicio de simulación de audiencia de exclusión de prueba ilícita. Se trabaja la construcción del argumento de exclusión, la respuesta de la acusación y la decisión judicial sobre la admisibilidad de la evidencia.",
-    formatos: ["Simulación"],
-    dificultad: 2,
-    oficio: "Ambos",
-    ia: false,
-    tipo: "simulacion",
-    url: ""
-  },
-  {
-    id: 6,
-    titulo: "Simulación: alegato de clausura",
-    area: "Penal",
-    descripcion: "Ejercicio de simulación de alegato de clausura en juicio oral. Los participantes construyen y exponen el argumento final del caso, integrando la prueba producida en el debate y las teorías del caso de cada parte.",
-    formatos: ["Simulación"],
-    dificultad: 3,
-    oficio: "Litigante",
-    ia: false,
-    tipo: "simulacion",
-    url: ""
-  }
-];
+const CASOS = [];
 
 /* ── COLORES POR ÁREA ── */
 const AREA_COLORS = {

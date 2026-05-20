@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entradas · Laboratorio</title>
+<title>Entradas · Casos & Simulaciones · Laboratorio</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -39,20 +39,41 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    height: 52px;
+    height: 64px;
     position: sticky;
     top: 0;
     z-index: 100;
   }
 
   .navbar-brand {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
     text-decoration: none;
-    opacity: 0.85;
-    letter-spacing: 0.2px;
+  }
+
+  .navbar-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .navbar-brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f0ede6;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+
+  .navbar-brand-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: #7a9fd4;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
 
   .navbar-links {
@@ -66,7 +87,7 @@
     color: var(--stone-dim);
     text-decoration: none;
     padding: 0 16px;
-    height: 52px;
+    height: 64px;
     display: flex;
     align-items: center;
     border-bottom: 2px solid transparent;
@@ -253,11 +274,18 @@
 <body>
 
 <nav class="navbar">
-  <a href="index.html" class="navbar-brand">Laboratorio</a>
+  <a href="index.html" class="navbar-brand">
+    
+    <div class="navbar-brand-text">
+      <span class="navbar-brand-name">Casos &amp; Simulaciones</span>
+      <span class="navbar-brand-sub">Laboratorio de Didáctica del Derecho</span>
+    </div>
+  </a>
   <div class="navbar-links">
-    <a href="index.html" class="navbar-link">Laboratorio</a>
+    <a href="index.html" class="navbar-link ">Laboratorio</a>
     <a href="entradas.html" class="navbar-link active">Entradas</a>
-    <a href="sobre.html" class="navbar-link">Sobre este proyecto</a>
+    <a href="sobre.html" class="navbar-link ">Sobre este proyecto</a>
+    
   </div>
 </nav>
 
@@ -274,7 +302,7 @@
 </div>
 
 <footer>
-  Laboratorio de casos y simulaciones · Didáctica del derecho
+  Casos &amp; Simulaciones · Laboratorio de Didáctica del Derecho
 </footer>
 
 <script>

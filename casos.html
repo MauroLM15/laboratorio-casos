@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOJ — Laboratorio de Oficios Jurídicos</title>
-<meta name="description" content="Formación, investigación y práctica jurídica situada.">
+<title>Casos & Simulaciones — LOJ</title>
+<meta name="description" content="Repositorio de casos y simulaciones para ejercitar prácticas jurídicas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -261,8 +261,8 @@ footer{ background:var(--bg); color:var(--muted); padding:44px 0 24px; border-to
       <span class="logo-word"><b>Laboratorio de<br>Oficios Jurídicos</b></span>
     </a>
     <nav class="mainnav" id="mainnav">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="casos.html">Casos &amp; Simulaciones</a>
+      <a href="index.html">Inicio</a>
+      <a href="casos.html" class="active">Casos &amp; Simulaciones</a>
       <a href="investigacion.html">Investigación</a>
       <a href="talleres.html">Talleres y Cursos</a>
       <a href="laboratorio.html">El Laboratorio</a>
@@ -275,48 +275,22 @@ footer{ background:var(--bg); color:var(--muted); padding:44px 0 24px; border-to
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap hero-inner reveal">
-      <span class="eyebrow">Laboratorio de Oficios Jurídicos</span>
-      <h1>Pensar cómo se aprenden, se enseñan y se ejercen los oficios del derecho.</h1>
-      <p class="tagline">Formación, investigación y práctica jurídica situada.</p>
+  <section class="page-head">
+    <div class="wrap page-head-inner reveal">
+      <span class="eyebrow">01 — Casos &amp; Simulaciones</span>
+      <h1>Repositorio de casos y simulaciones</h1>
       <div class="dotrow"><span></span><span></span><span></span></div>
-      <p class="lede">Diseñamos casos, simulaciones, investigaciones y propuestas formativas orientadas a trabajar con situaciones profesionales concretas. Buscamos construir herramientas que no reduzcan el derecho a la transmisión de normas, sino que permitan comprenderlo como una práctica atravesada por decisiones, vínculos, conflictos, estrategias y formas de intervención.</p>
+      <p><b style="color:var(--text);">Casos &amp; Simulaciones</b> reúne materiales para ejercitar prácticas jurídicas mediante roles profesionales, escenas situadas, información incompleta y criterios de evaluación. Las simulaciones no buscan reemplazar la experiencia profesional, sino crear condiciones para ensayar decisiones, formular preguntas, construir estrategias y reflexionar sobre la práctica.</p>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="bloques-title">
+  <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Cuatro entradas al Laboratorio</span>
-        <h2 id="bloques-title">Bloques principales</h2>
-      </div>
-      <div class="grid grid-4">
-        <a href="casos.html" class="block-card reveal">
-          <span class="num">01</span>
-          <h3>Casos &amp; Simulaciones</h3>
-          <p>Escenas de práctica para ensayar preguntas, decisiones, argumentos y formas de intervención profesional.</p>
-          <span class="go">Explorar →</span>
-        </a>
-        <a href="investigacion.html" class="block-card reveal">
-          <span class="num">02</span>
-          <h3>Investigación</h3>
-          <p>Indagaciones sobre la enseñanza, el aprendizaje y el ejercicio del derecho en contextos institucionales concretos.</p>
-          <span class="go">Explorar →</span>
-        </a>
-        <a href="talleres.html" class="block-card reveal">
-          <span class="num">03</span>
-          <h3>Talleres y Cursos</h3>
-          <p>Propuestas formativas para trabajar con casos, problemas, simulaciones y herramientas de reflexión profesional.</p>
-          <span class="go">Explorar →</span>
-        </a>
-        <a href="laboratorio.html" class="block-card reveal">
-          <span class="num">04</span>
-          <h3>El Laboratorio</h3>
-          <p>Nuestro enfoque, nuestras líneas de trabajo y el modo en que pensamos el derecho como oficio.</p>
-          <span class="go">Explorar →</span>
-        </a>
-      </div>
+      <!-- ============================ REPOSITORIO ============================ -->
+      <div class="repo-toolbar reveal" id="repo-toolbar"></div>
+      <p class="repo-count" id="repo-count"></p>
+      <div id="repo-list"></div>
+      <!-- ======================================================================= -->
     </div>
   </section>
 
@@ -398,6 +372,114 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+</script>
+
+<script>
+/*
+  ================================================================
+  REPOSITORIO DE CASOS & SIMULACIONES — EDITÁ ESTE ARRAY
+  ================================================================
+  Para agregar un caso o simulación, copiá un bloque { ... } y
+  completalo. Para sacar uno, borrá su bloque completo.
+
+  Campos:
+    id            → número único (no repetir)
+    titulo        → título del caso o simulación
+    categoria     → una de las 8 categorías de abajo (para el filtro)
+    resumen       → descripción breve (2-3 oraciones)
+    destinatarios → a quién está dirigido (ej: "Estudiantes de práctica profesional")
+    duracion      → duración estimada (ej: "2 horas", "3 encuentros")
+    rubrica       → true si incluye rúbrica de evaluación, false si no
+    fecha         → "AAAA-MM-DD", para ordenar (más nuevo primero)
+    url           → link a la ficha completa (Google Doc, PDF, o página).
+                    Dejalo como "" si todavía no tenés el material cargado:
+                    la entrada se muestra igual, pero sin el link "Ver ficha".
+
+  Categorías disponibles (usar exactamente uno de estos strings):
+    "Simulaciones con IA" | "Entrevistas" | "Teoría del caso" | "Audiencias"
+    "Examen directo y contraexamen" | "Rúbricas" | "Bitácoras de reflexión"
+    "Guías de uso"
+  ================================================================
+*/
+const CASOS = [
+  /* Ejemplo de estructura — descomentá y completá para cargar un caso real:
+  {
+    id: 1,
+    titulo: "Título del caso o simulación",
+    categoria: "Entrevistas",
+    resumen: "Descripción breve (2-3 oraciones).",
+    destinatarios: "A quién está dirigido",
+    duracion: "2 horas",
+    rubrica: true,
+    fecha: "2026-04-02",
+    url: ""
+  },
+  */
+];
+
+function categorias() {
+  return ["Simulaciones con IA","Entrevistas","Teoría del caso","Audiencias","Examen directo y contraexamen","Rúbricas","Bitácoras de reflexión","Guías de uso"];
+}
+
+let filtroActivo = "Todos";
+
+function renderToolbar() {
+  const toolbar = document.getElementById("repo-toolbar");
+  const cats = ["Todos", ...categorias()];
+  toolbar.innerHTML = cats.map(c =>
+    `<button class="filter-chip${c === filtroActivo ? " active" : ""}" data-cat="${c}">${c}</button>`
+  ).join("");
+  toolbar.querySelectorAll(".filter-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      filtroActivo = btn.dataset.cat;
+      renderToolbar();
+      renderList();
+    });
+  });
+}
+
+function renderList() {
+  const list = document.getElementById("repo-list");
+  const count = document.getElementById("repo-count");
+
+  const filtrados = filtroActivo === "Todos" ? CASOS : CASOS.filter(c => c.categoria === filtroActivo);
+  const ordenados = [...filtrados].sort((a, b) => b.fecha.localeCompare(a.fecha));
+
+  count.textContent = ordenados.length
+    ? ordenados.length + (ordenados.length === 1 ? " caso cargado" : " casos cargados")
+    : "";
+
+  if (ordenados.length === 0) {
+    list.innerHTML = `<div class="repo-empty">
+      <p>Sin casos todavía en esta categoría</p>
+      <span>Agregá una entrada al array CASOS en el código de esta página para que aparezca acá.</span>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = ordenados.map((c) => `
+    <div class="repo-entry">
+      <div class="repo-poster"><span>${c.titulo}</span></div>
+      <div class="repo-side">
+        <h3 onclick="${c.url ? `window.open('${c.url}','_blank')` : ''}">${c.titulo}</h3>
+        <div class="repo-meta-line">
+          <span class="stylerow"><b>Categoría</b> <span class="tags"><span class="tag">${c.categoria}</span></span></span>
+        </div>
+        <div class="repo-meta-line">
+          <span class="info">${c.destinatarios}</span><span class="sep">·</span><span class="info">${c.duracion}</span>${c.rubrica ? `<span class="sep">·</span><span class="info">Incluye rúbrica</span>` : ""}
+        </div>
+        <div class="dotrow"><span></span><span></span><span></span></div>
+        <p class="resumen">${c.resumen}</p>
+        ${c.url
+          ? `<a href="${c.url}" target="_blank" class="repo-link">Ver ficha completa</a>`
+          : `<span class="repo-link" style="opacity:.4; cursor:default;">Ficha pendiente de carga</span>`}
+      </div>
+    </div>
+  `).join("");
+}
+
+renderToolbar();
+renderList();
 </script>
 </body>
 </html>

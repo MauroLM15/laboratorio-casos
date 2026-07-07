@@ -19,9 +19,9 @@
   --label:   #ADADAD;
   --white:   #FFFFFF;
   /* únicos tres colores del sitio: una letra de LOJ, un color cada una */
-  --logo-l:  #FF3EA5;
-  --logo-o:  #FFE156;
-  --logo-j:  #00C2D1;
+  --logo-l:  #FFA615;
+  --logo-o:  #FFA615;
+  --logo-j:  #FFA615;
   --maxw: 1080px;
   --radius: 8px;
 }
@@ -108,7 +108,7 @@ nav.mainnav a.active{ border-bottom-color:var(--white); }
   font-family:'Inter',sans-serif; font-weight:700; font-size:.88rem; cursor:pointer; border:1px solid transparent;
   transition:opacity .2s ease;
 }
-.btn:hover{ opacity:.85; }
+.btn:hover{ background:var(--logo-l); color:var(--bg); opacity:1; }
 .btn-gold{ background:var(--white); color:var(--bg); }
 .btn-dark{ background:var(--line); color:var(--text); }
 .text-link{ font-size:.88rem; font-weight:700; color:inherit; border-bottom:1px solid rgba(242,242,242,.5); padding-bottom:2px; }
@@ -194,7 +194,7 @@ nav.mainnav a.active{ border-bottom-color:var(--white); }
   display:inline-flex; align-items:center; gap:6px; margin-top:6px; padding:11px 22px; border-radius:var(--radius);
   background:var(--white); color:var(--bg); font-size:.84rem; font-weight:700;
 }
-.repo-link:hover{ opacity:.85; }
+.repo-link:hover{ background:var(--logo-l); color:var(--bg); opacity:1; }
 .repo-empty{ padding:50px 0; }
 .repo-empty p{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.2rem; color:var(--text); margin-bottom:6px; }
 .repo-empty span{ font-size:.86rem; color:var(--muted); }
